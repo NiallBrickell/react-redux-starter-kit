@@ -1,7 +1,6 @@
 export default function promiseMiddleware(...inject) {
 	return ({dispatch, getState}) => next => action => {
-		let {promise: promiseFunc, types} = action;
-
+		let {types, promise: promiseFunc, then: afterFunc, ...other} = action;
 		// If there's no promiseFunc, we're dispatching a normal action.
 		if (!promiseFunc) return next(action);
 
@@ -10,25 +9,30 @@ export default function promiseMiddleware(...inject) {
 
 		// Dispatch a REQUEST started action
 		next({
-			type: STARTED
+			type: STARTED,
+			...other
 		});
 
 		// Inject paramaters - could be API library or other lib promise needs
 		const promise = promiseFunc(...inject);
 		// Resolve the promise
 		promise.then((res) => {
-			return next({
+			next({
+				type: RESOLVED,
 				result: res,
-				type: RESOLVED
+				...other
 			});
+			if(afterFunc) return dispatch(afterFunc());
+			else return;
 		}).catch((err) => {
 			return next({
+				type: FAILURE,
 				error: err,
-				type: FAILURE
-			})
+				...other
+			});
 		});
 
-		// TODO: return promise?
-		// return promise;
-	}
+	// TODO: return promise?
+	// return promise;
+	};
 }

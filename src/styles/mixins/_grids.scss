@@ -1,0 +1,53 @@
+@mixin grids() {
+	@include grid-defaults();
+}
+
+@mixin grid-defaults() {
+	div {
+		/*height: 100%;
+		width: 100%;*/
+	}
+	input {
+		width:100%;
+	}
+}
+
+//Save all the breakpoint and suzy code -> one line
+@mixin resp-span($sp-mob, $sp-mid: $sp-mob, $sp-lrg: $sp-mid) {
+	@include span($sp-mob);
+
+	//Could just use breakpoint(min-width) as not changing grid with sizing up and down, this is just cool as well
+	@include susy-breakpoint($bp-medium, $susy) {
+		@include span($sp-mid);
+	}
+	@include susy-breakpoint($bp-large, $susy) {
+		@include span($sp-lrg);
+	}
+}
+
+@mixin resp-margin-left($margin-mob:"", $margin-small:"", $margin-medium:"", $margin-large:"") {
+	margin-left: $margin-mob;
+	@include breakpoint($bp-small) {
+		margin-left: $margin-small;
+	}
+	@include breakpoint($bp-medium) {
+		margin-left: $margin-medium;
+	}
+	@include breakpoint($bp-large) {
+		margin-left: $margin-large;
+	}
+}
+
+@mixin show_at($bp, $display: inline-block) {
+	display:none;
+	@include breakpoint($bp) {
+		display: $display;
+	}
+}
+
+@mixin hide_at($bp, $display: inline-block) {
+	display: $display;
+	@include breakpoint($bp) {
+		display: none;
+	}
+}

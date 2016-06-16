@@ -1,46 +1,44 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const COUNTER_INCREMENT = 'COUNTER_INCREMENT';;
+export const SHOW_HIDE_MOB_NAV = 'SHOW_HIDE_MOB_NAV';
 
 // ------------------------------------
 // Action Creators
 // ------------------------------------
-export function increment(value = 1) {
-	return {
-		type: COUNTER_INCREMENT,
-		payload: value
-	};
-}
-
-export const doubleAsync = () => {
+export const showHideMobNav = () => {
 	return (dispatch, getState) => {
-		return new Promise((resolve) => {
-			setTimeout(() => {
-				dispatch(increment(getState().counter));
-				resolve();
-			}, 200);
+		dispatch({
+			type: SHOW_HIDE_MOB_NAV,
+			payload: !(getState().nav.showMobNav)
 		});
 	};
 };
 
+// Actions
 export const actions = {
-	increment,
-	doubleAsync
+	showHideMobNav
 };
 
 // ------------------------------------
 // Action Handlers for Reducer
 // ------------------------------------
 const ACTION_HANDLERS = {
-	[COUNTER_INCREMENT]: (state, action) => state + action.payload
+	[SHOW_HIDE_MOB_NAV]: (state, action) => {
+		return {
+			...state,
+			showMobNav: action.payload
+		};
+	}
 };
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0;
-export default function counterReducer(state = initialState, action) {
+const initialState = {
+	showMobNav: false
+};
+export default function navReducer(state = initialState, action) {
 	const handler = ACTION_HANDLERS[action.type];
 	return handler ? handler(state, action) : state;
 }

@@ -1,19 +1,19 @@
 // We only need to import the modules necessary for initial render
-import App from '../containers/App/App'
-import Home from './Home'
-import Counter from './Counter'
+import App from '../containers/App/App';
+import Home from './Home';
+import Counter from './Counter';
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-  path: '/',
-  component: App,
-  indexRoute: Home,
-  childRoutes: [
-    Counter(store)
-  ]
-})
+	path: '/',
+	component: App,
+	indexRoute: Home(store),
+	childRoutes: [
+		Counter(store)
+	]
+});
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
     using getChildRoutes with the following signature:

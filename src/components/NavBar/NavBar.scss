@@ -1,0 +1,131 @@
+div.navBar {
+	// position: absolute; //TODO: Why's this making child mob container relative to this
+	left: 0;
+	@include span(1);
+	@include breakpoint($bp-medium) {
+		position: relative;
+		@include span(12);
+		margin: 0;
+	}
+
+	z-index: 4;
+
+	height: 40px;
+
+	@include breakpoint($bp-medium) {
+		background-color: rgba(255,255,255,0.25);
+	}
+
+	.mobNavBtn {
+		@include span(1);
+		@include breakpoint($bp-small) {
+			@include push(0.5);
+		}
+
+		position: absolute;
+		z-index: 7; //ontop of nav
+
+		line-height: 70px;
+
+		text-align: right;
+		font-size: 1.3rem;
+
+		i {
+			cursor: pointer;
+		}
+
+		display: inline-block;
+		@include breakpoint($bp-medium) {
+			display: none;
+		}
+	}
+	$off-canvas-width: span(11.5);
+	@mixin containerMob() {
+		position: absolute; top:0;
+		width: $off-canvas-width;
+		right: -$off-canvas-width;
+
+
+		height: 100%;
+
+		background-color: rgba(0,0,0,0.9);
+
+		z-index:6;
+
+		padding-top: 2rem;
+
+		transition: transform 0.7s cubic-bezier(.13,.99,.25,.98);
+		
+		.link {
+			display: block;
+
+			width: 100%;
+			height: 4rem;
+			line-height: 4rem;
+
+			margin-top: 2rem;
+
+			color: white;
+			text-decoration: none;
+
+			font-size: 2rem;
+
+			text-align: center;
+		}
+	}
+	@mixin containerFull() {
+		@include span(8);
+		margin-left: span(2);
+		
+		display: none;
+		@include breakpoint($bp-medium) {
+			display: block;
+		}
+
+		.link {
+			display: inline-block;
+
+			padding-right: 2.6rem;
+			padding-left: 2.6rem;
+
+			line-height: 40px;
+			color: white;
+
+			font-size: 12px;
+
+			margin: 0;
+
+			text-decoration: none;
+
+			border-right: 1px solid rgba(0,0,0,0.85);
+			&:first-of-type {
+				border-left: 1px solid rgba(0,0,0,0.85);
+			}
+
+			&.activeRoute {
+				background-color: white;
+				color: black;
+			}
+
+			&:hover {
+				background-color: $highlight-color;
+				color: white;
+				// border-color: $highlight-color;
+			}
+		}
+	}
+	.open {
+		transform: translate3d(-$off-canvas-width, 0, 0);
+		box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.2);
+	}
+	.container {
+		
+
+		@include breakpoint(max-width $bp-medium) {
+			@include containerMob();
+		}
+		@include breakpoint($bp-medium) {
+			@include containerFull();
+		}
+	}
+}

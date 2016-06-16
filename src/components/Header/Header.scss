@@ -1,4 +1,29 @@
-.activeRoute {
-  font-weight: bold;
-  text-decoration: underline;
+.header {
+	position: relative;
+	z-index: 3;
+	height: 70px;
+
+	@include span(10);
+	@include breakpoint($bp-medium) {
+		width: 100%;
+	}
+
+	text-align: left;
+	padding-left: 1rem;
+	@include breakpoint($bp-medium) {
+		text-align: center;
+		padding-left: 0;
+	}
+	h1.headerText {
+		line-height: 70px;
+
+		margin: 0;
+
+		display: inline-block;
+		width: max-content;
+		
+		font-weight: 700;
+		font-size: 18px;
+		color: white;
+	}
 }

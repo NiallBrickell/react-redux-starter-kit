@@ -113,6 +113,7 @@ const base = (...args) =>
 config.utils_paths = {
   base   : base,
   client : base.bind(null, config.dir_client),
+  server : base.bind(null, config.dir_server),
   dist   : base.bind(null, config.dir_dist)
 }
 

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { showHideMobNav } from '../../redux/modules/Nav';
 
-import App from '../../components/App/App';
+import NavBar from '../../components/NavBar/NavBar';
 
 const mapStateToProps = (state) => ({
 	showMobNav: state.nav.showMobNav
@@ -11,4 +11,4 @@ const mapActionCreators = {
 	showHideMobNav
 };
 
-export default connect(mapStateToProps, mapActionCreators)(App);
+export default connect(mapStateToProps, mapActionCreators)(NavBar);

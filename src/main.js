@@ -5,6 +5,10 @@ import { useRouterHistory, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import createStore from './redux/createStore';
 import { Provider } from 'react-redux';
+import * as FastClick from 'fastclick';
+
+// Attach fastclick
+FastClick.attach(document.body);
 
 // ========================================================
 // Browser History Setup
@@ -31,7 +35,7 @@ const history = syncHistoryWithStore(browserHistory, store, {
 // ========================================================
 if (__DEBUG__) {
 	if (window.devToolsExtension) {
-		window.devToolsExtension.open();
+		//window.devToolsExtension.open();
 	}
 }
 

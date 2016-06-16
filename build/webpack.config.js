@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import config from '../config'
 import _debug from 'debug'
+import path from 'path';
 
 const debug = _debug('app:webpack:config')
 const paths = config.utils_paths
@@ -11,6 +12,7 @@ const {__DEV__, __PROD__, __TEST__} = config.globals
 
 debug('Create configuration.')
 const webpackConfig = {
+	cache: false, //DEV
   name: 'client',
   target: 'web',
   devtool: config.compiler_devtool,
@@ -52,7 +54,7 @@ webpackConfig.plugins = [
   new HtmlWebpackPlugin({
     template: paths.client('index.html'),
     hash: false,
-    favicon: paths.client('static/favicon.ico'),
+    // favicon: paths.client('static/favicon.ico'),
     filename: 'index.html',
     inject: 'body',
     minify: {
@@ -118,30 +120,6 @@ webpackConfig.eslint = {
 */
 
 // ------------------------------------
-// Loaders
-// ------------------------------------
-// JavaScript / JSON
-webpackConfig.module.loaders = [{
-  test: /\.(js|jsx)$/,
-  exclude: /node_modules/,
-  loader: 'babel',
-  query: {
-    cacheDirectory: true,
-    plugins: ['transform-runtime'],
-    presets: ['es2015', 'react', 'stage-0'],
-    env: {
-      production: {
-        presets: ['react-optimize']
-      }
-    }
-  }
-},
-{
-  test: /\.json$/,
-  loader: 'json'
-}]
-
-// ------------------------------------
 // Style Loaders
 // ------------------------------------
 // We use cssnano with the postcss loader, so we tell
@@ -173,16 +151,17 @@ if (isUsingCSSModules) {
     'localIdentName=[name]__[local]___[hash:base64:5]'
   ].join('&')
 
-  webpackConfig.module.loaders.push({
+  webpackConfig.module.loaders = [{
     test: /\.scss$/,
     include: cssModulesRegex,
     loaders: [
       'style',
       cssModulesLoader,
       'postcss',
-      'sass?sourceMap'
+      'sass?sourceMap',
+      paths.base('build/loaders/importCoreSCSS')
     ]
-  })
+  }];
 
   webpackConfig.module.loaders.push({
     test: /\.css$/,
@@ -200,11 +179,13 @@ const excludeCSSModules = isUsingCSSModules ? cssModulesRegex : false
 webpackConfig.module.loaders.push({
   test: /\.scss$/,
   exclude: excludeCSSModules,
+  // include: paths.client('styles/cordsdse'),
   loaders: [
     'style',
     BASE_CSS_LOADER,
     'postcss',
-    'sass?sourceMap'
+    'sass?sourceMap',
+	paths.base('build/loaders/importCoreSCSS')
   ]
 })
 webpackConfig.module.loaders.push({
@@ -221,7 +202,7 @@ webpackConfig.module.loaders.push({
 // Style Configuration
 // ------------------------------------
 webpackConfig.sassLoader = {
-  includePaths: paths.client('styles')
+  includePaths: paths.client('styles/')
 }
 
 webpackConfig.postcss = [
@@ -242,6 +223,32 @@ webpackConfig.postcss = [
   })
 ]
 
+// ------------------------------------
+// Loaders
+// ------------------------------------
+// JavaScript / JSON
+webpackConfig.module.loaders.push({
+  test: /\.(js|jsx)$/,
+  exclude: /node_modules/,
+  loader: 'babel',
+  query: {
+    cacheDirectory: true,
+    plugins: ['transform-runtime'],
+    presets: ['es2015', 'react', 'stage-0'],
+    env: {
+      production: {
+        presets: ['react-optimize']
+      }
+    }
+  }
+},
+{
+  test: /\.json$/,
+  loader: 'json'
+})
+
+
+
 // File loaders
 /* eslint-disable */
 webpackConfig.module.loaders.push(
@@ -251,7 +258,8 @@ webpackConfig.module.loaders.push(
   { test: /\.ttf(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream' },
   { test: /\.eot(\?.*)?$/,   loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
   { test: /\.svg(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
-  { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' }
+  { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' },
+  { test: /\.(mp4)$/,    loader: 'url?limit=10000&mimetype=video/mp4' }
 )
 /* eslint-enable */
 

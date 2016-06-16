@@ -3,7 +3,7 @@ import {
   increment,
   doubleAsync,
   default as counterReducer
-} from 'routes/Counter/modules/counter'
+} from 'redux/modules/Counter'
 
 describe('(Redux Module) Counter', () => {
   it('Should export a constant COUNTER_INCREMENT.', () => {

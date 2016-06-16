@@ -1,23 +1,20 @@
-:global {
-  @import 'base';
-  @import '~normalize.css/normalize';
+@import '~susy/sass/susy';
+@import "~breakpoint-sass/stylesheets/breakpoint";
 
-  // Some best-practice CSS that's useful for most apps
-  // Just remove them if they're not what you want
-  html {
-    box-sizing: border-box;
-  }
+@import 'globals';
+@import 'buttons';
 
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
+@import '~normalize.css/normalize';
 
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+
+	background-color: black;
+
+	overflow-x: hidden;
+
+	@include fonts;
+	@include buttons;
 }

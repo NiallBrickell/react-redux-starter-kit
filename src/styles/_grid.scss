@@ -1,0 +1,23 @@
+@import '~susy/sass/susy';
+@import "~breakpoint-sass/stylesheets/breakpoint";
+@import 'mixins/grids';
+
+// Grid vars in _globals
+
+@include border-box-sizing;
+
+//Susy Defaults
+$susy: (
+	global-box-sizing: border-box,
+	use-custom: (rem: true),
+	container: 64rem,
+	columns: 12,
+	gutters: (1/6)
+);
+
+//Responsive Breakpoints
+$bp-iphone: 30rem;
+$bp-small: 32rem;
+$bp-medium: 60rem;
+$bp-large: 80rem;
+$bp-v-large: 100rem;
