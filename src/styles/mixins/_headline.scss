@@ -1,0 +1,26 @@
+@import 'grid';
+
+@mixin headlineSlashes($size-adjust: 1, $color: white) {
+	h2, h3 {
+		@include resp-margin-left(1.5rem, 2rem, 2.8rem);
+		//TODO: size-adjust for margin
+	}
+	&:before {
+		content: '/ /'; //TODO: Transform to look nicer?
+		color: $color;
+		position: absolute;
+
+		font-weight: 700;
+
+		top: -0.4rem; //TODO: size-adjust for positioning
+		font-size: 1.3rem * $size-adjust;
+		@include breakpoint($bp-small) {
+			top: -0.5rem;
+			font-size: 1.8rem * $size-adjust;
+		}
+		@include breakpoint($bp-medium) {
+			top: -0.65rem;
+			font-size: 2.3rem * $size-adjust;
+		}
+	}
+}
