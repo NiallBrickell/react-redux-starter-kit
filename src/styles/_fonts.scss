@@ -25,7 +25,6 @@ h2 {
 		font-size: 2rem;
 	}
 
-	color: white;
 	width: max-content;
 }
 h3 {
@@ -49,7 +48,7 @@ h3 {
 	@include font();
 }
 
-@mixin font($font-family: $base-font-family, $font-color: white, $font-weight: 400) {
+@mixin font($font-family: $base-font-family, $font-color: $def-font-color, $font-weight: 400) {
 	font-family: $font-family;
 	color: $font-color;
 	font-weight: $font-weight;

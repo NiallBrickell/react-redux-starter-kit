@@ -1,7 +1,8 @@
 import React from 'react';
+import * as classes from './Home.scss';
 
 export const Home = () => (
-	<div>
+	<div className={classes.home}>
 		<h1>Welcome!</h1>
 	</div>
 );

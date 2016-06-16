@@ -21,9 +21,6 @@ export const NavBar = ({ showMobNav, showHideMobNav}) => {
 			    <Link to='/counter' className={classes.link} activeClassName={classes.activeRoute}>
 			      COUNTER
 			    </Link>
-			    <Link to='/blog' className={classes.link} activeClassName={classes.activeRoute}>
-			      BLOG
-			    </Link>
 		    </div>
 	    </div>
 	);

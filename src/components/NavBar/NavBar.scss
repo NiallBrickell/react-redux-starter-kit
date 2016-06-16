@@ -13,7 +13,7 @@ div.navBar {
 	height: 40px;
 
 	@include breakpoint($bp-medium) {
-		background-color: rgba(255,255,255,0.25);
+		background-color: rgba(0,0,0,0.85);
 	}
 
 	.mobNavBtn {
