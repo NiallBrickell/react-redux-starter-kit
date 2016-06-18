@@ -1,0 +1,13 @@
+@mixin fonts() {
+	-webkit-font-smoothing: antialiased;
+	text-transform: none;
+	text-rendering: optimizeLegibility;
+
+	@include font();
+}
+
+@mixin font($font-family: $base-font-family, $font-color: $text-color-def, $font-weight: 400) {
+	font-family: $font-family;
+	color: $font-color;
+	font-weight: $font-weight;
+}

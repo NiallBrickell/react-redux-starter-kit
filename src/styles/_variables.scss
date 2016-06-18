@@ -1,0 +1,47 @@
+$brand-color: #D2AF43;
+$brand-color-light: #E3C25D;
+$brand-color-v-light: #F2D068;
+
+$brand-secondary: #1DB0FA;
+
+$highlight-color: $brand-color;
+
+$brand-blue: #3DA6FF;
+$brand-green: #3FE93F;
+$brand-purple: #780CE8;
+$brand-red: #E9493F;
+$brand-yellow: #FFF50D;
+
+$text-color-def: #373737;
+
+// Misc.
+$light-gray: #f6f6f6;
+$mid-gray: #EBEBEB;
+$dark-gray: #474747;
+
+$link-color: #2A90E8;
+$link-hover-color: #69B7FA;
+
+$base-font-family: 'OpenSans';
+
+//Susy Defaults
+$susy: (
+	global-box-sizing: border-box,
+	use-custom: (rem: true),
+	container: 64rem,
+	columns: 12,
+	gutters: (1/6)
+);
+
+//Responsive Breakpoints
+$bp-iphone: 30rem;
+$bp-small: 32rem;
+$bp-medium: 60rem;
+$bp-large: 80rem;
+$bp-v-large: 100rem;
+
+//*** Buttons ***//
+$btn-default-bg-color: white;
+$btn-default-border: 1px solid #e5e5e5;
+$btn-default-border-radius: 5px;
+$btn-default-padding: 0.7rem 1.5rem;

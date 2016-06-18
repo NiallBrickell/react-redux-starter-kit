@@ -1,18 +1,19 @@
 @import 'mixins/font-face';
-@import 'grid';
 
-// @include font-face(Montserrat, 'assets/fonts/Montserrat-Black', 700, normal, otf);
-// @include font-face(Montserrat, 'assets/fonts/Montserrat-Bold', 600, normal, otf);
-// @include font-face(Montserrat, 'assets/fonts/Montserrat-Regular', 400, normal, otf);
-// @include font-face(Montserrat, 'assets/fonts/Montserrat-Light', 300, normal, otf);
-// @include font-face(Montserrat, 'assets/fonts/Montserrat-Hairline', 200, normal, otf);
+@include font-face(OpenSans, '../assets/fonts/OpenSans-ExtraBold', 700, normal, ttf);
+@include font-face(OpenSans, '../assets/fonts/OpenSans-Bold', 600, normal, ttf);
+@include font-face(OpenSans, '../assets/fonts/OpenSans-SemiBold', 500, normal, ttf);
+@include font-face(OpenSans, '../assets/fonts/OpenSans-Regular', 400, normal, ttf);
+@include font-face(OpenSans, '../assets/fonts/OpenSans-Light', 300, normal, ttf);
 
-@include font-face(Oswald, '../assets/fonts/Oswald-Bold', 600, normal, ttf);
-@include font-face(Oswald, '../assets/fonts/Oswald-Regular', 400, normal, ttf);
-@include font-face(Oswald, '../assets/fonts/Oswald-Light', 300, normal, ttf);
-@include font-face(Slabo, '../assets/fonts/Slabo13px-Regular', 400, normal, ttf);
-
-$base-font-family: 'Montserrat';
+// Links
+a {
+	text-decoration: none;
+	color: $link-color;
+	&:visited {
+		color: $link-color;
+	}
+}
 
 // Headers
 h2 {
@@ -38,18 +39,4 @@ h3 {
 	@include breakpoint($bp-medium) {
 		font-size: 1.7rem;
 	}
-}
-
-@mixin fonts() {
-	-webkit-font-smoothing: antialiased;
-	text-transform: none;
-	text-rendering: optimizeLegibility;
-
-	@include font();
-}
-
-@mixin font($font-family: $base-font-family, $font-color: $def-font-color, $font-weight: 400) {
-	font-family: $font-family;
-	color: $font-color;
-	font-weight: $font-weight;
 }

@@ -1,0 +1,23 @@
+@mixin buttons() {
+	button {
+		@include button();
+	}
+}
+
+@mixin button($bg-color: $btn-default-bg-color, $border: $btn-default-border, $border-radius: $btn-default-border-radius, $padding: $btn-default-padding, $text-color: $text-color-def) {
+	background-color: $bg-color;
+	border: $border;
+	border-radius: $btn-default-border-radius;
+	padding: $padding;
+
+	cursor: pointer;
+	
+	color: $text-color;
+	font-size: 1rem;
+	font-weight: 400;
+
+	&:hover {
+		background-color: $text-color;
+		color: $btn-default-bg-color;
+	}
+}
