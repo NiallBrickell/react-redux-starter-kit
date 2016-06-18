@@ -36,6 +36,18 @@ const config = {
   apiHost: 'localhost',
   
   // ----------------------------------
+  // API Proxy Configuration
+  // ----------------------------------
+  proxy: {
+  	enabled: true,
+  	options: {
+  		host: 'http://localhost:3001/',
+  		match: /^\/api\//,
+  		map: (path) => path.split('/').slice(2).join('/')
+  	}
+  },
+
+  // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
   compiler_css_modules     : true,
