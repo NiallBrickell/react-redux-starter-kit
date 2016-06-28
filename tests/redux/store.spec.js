@@ -14,7 +14,7 @@ describe('(Redux) Creating a store', () => {
 		};
 
 		it('Should have initial state', () => {
-			expect(_globalState.store.getState()).to.have.all.keys('router');
+			expect(_globalState.store.getState()).to.have.all.keys(['router', 'nav']);
 		});
 	});
 })
@@ -35,7 +35,7 @@ describe('(Redux) Reducers', () => {
 		});
 
 		it('Should return the initial reducer', () => {
-			reducer.should.have.any.keys('router');
+			expect(reducer).to.have.any.keys(['router', 'nav']);
 		});
 	});
 

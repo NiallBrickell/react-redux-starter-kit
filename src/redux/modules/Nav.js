@@ -38,7 +38,7 @@ const ACTION_HANDLERS = {
 const initialState = {
 	showMobNav: false
 };
-export default function navReducer(state = initialState, action) {
+export default function navReducer(state = initialState, action = {}) {
 	const handler = ACTION_HANDLERS[action.type];
 	return handler ? handler(state, action) : state;
 }
