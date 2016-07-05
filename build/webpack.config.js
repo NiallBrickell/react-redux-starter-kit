@@ -12,7 +12,7 @@ const {__DEV__, __PROD__, __TEST__} = config.globals
 
 debug('Create configuration.')
 const webpackConfig = {
-	cache: false, //DEV
+	cache: true,
   name: 'client',
   target: 'web',
   devtool: config.compiler_devtool,
